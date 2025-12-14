@@ -1,9 +1,9 @@
-extends layout
+extends ../layout
 
 block content
-  h1 Books
+  h1 Patrons
   div.create-search-container
-    a.button(href='/books/new') Create New Book
+    a.button(href='/patrons/new') Create New Patron
     form(method='get')
       if search
         input(type='search', id='search', name='search', placeholder='Search...', value=search)
@@ -13,22 +13,24 @@ block content
   table
     thead
       tr
-        th Title
-        th Author
-        th Genre
-        th Year Released
+        th Name
+        th Address
+        th Email
+        th Library ID
+        th Zip
     tbody
-      if books.length > 0
-        each book in books
+      if patrons.length > 0
+        each patron in patrons
           tr
             td
-              a(href='/books/' + book.id)= book.title
-            td= book.author
-            td= book.genre
-            td= book.first_published
+              a(href='/patrons/' + patron.id)= patron.first_name + ' ' + patron.last_name
+            td= patron.address || ''
+            td= patron.email || ''
+            td= patron.library_id || ''
+            td= patron.zip_code || ''
       else
         tr
-          td(colspan='4', style='text-align: center; padding: 20px;') No results found
+          td(colspan='5', style='text-align: center; padding: 20px;') No results found
   if totalPages > 1
     nav.pagination
       ul
@@ -71,4 +73,3 @@ block content
             a(href=nextUrl) Next
         else
           li Next
-

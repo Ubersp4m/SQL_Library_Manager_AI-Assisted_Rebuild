@@ -1,4 +1,4 @@
-extends layout
+extends ../layout
 
 block content
   h1 New Loan
@@ -28,4 +28,3 @@ block content
             option(value=patron.id)= patron.library_id + ' - ' + patron.first_name + ' ' + patron.last_name
     p
       input(type='submit', value='Create New Loan')
-

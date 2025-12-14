@@ -1,8 +1,8 @@
-extends layout
+extends ../layout
 
 block content
   h1 Book: #{book.title}
-  form(method='post', action='/books/' + book.id + '/update')
+  form(method='POST', action='/books/' + book.id+'?_method=PUT')
     if errors
       h2.error Oooops!
       ul.error
@@ -22,4 +22,3 @@ block content
       input#first_published(type='text', name='first_published', value=book.first_published || '')
     p
       input(type='submit', value='Update')
-

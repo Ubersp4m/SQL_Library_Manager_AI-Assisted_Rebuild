@@ -1,15 +1,9 @@
-extends layout
+extends ../layout
 
 block content
-  h1 Loans
-  div.create-search-container
+  h1 Overdue Loans
+  p
     a.button(href='/loans/new') Create New Loan
-    form(method='get')
-      if search
-        input(type='search', id='search', name='search', placeholder='Search...', value=search)
-      else
-        input(type='search', id='search', name='search', placeholder='Search...')
-      button.search-btn(type='submit') Search
   p.filters
     strong Filters: 
     a(href='/loans') All
@@ -38,18 +32,17 @@ block content
             td= loan.return_by
             td= loan.returned_on || ''
             td
-              if !loan.returned_on
-                a.button(href='/loans/' + loan.id + '/return') Return Book
+              a.button(href='/loans/' + loan.id + '/return') Return Book
       else
         tr
-          td(colspan='6', style='text-align: center; padding: 20px;') No results found
+          td(colspan='6', style='text-align: center; padding: 20px;') No overdue loans found
   if totalPages > 1
     nav.pagination
       ul
         if hasPrevious
           li
             - var prevPage = currentPage - 1
-            - var prevUrl = search ? '?page=' + prevPage + '&search=' + search : '?page=' + prevPage
+            - var prevUrl = '?page=' + prevPage
             a(href=prevUrl) Previous
         else
           li Previous
@@ -59,30 +52,28 @@ block content
         - for (var i = startPage; i <= endPage; i++) { pages.push(i); }
         if startPage > 1
           li
-            - var firstUrl = search ? '?page=1&search=' + search : '?page=1'
-            a(href=firstUrl) 1
+            a(href='?page=1') 1
           if startPage > 2
             li ...
         each pageNum in pages
           if pageNum === currentPage
             li.active
-              - var currentUrl = search ? '?page=' + pageNum + '&search=' + search : '?page=' + pageNum
+              - var currentUrl = '?page=' + pageNum
               a(href=currentUrl)= pageNum
           else
             li
-              - var pageUrl = search ? '?page=' + pageNum + '&search=' + search : '?page=' + pageNum
+              - var pageUrl = '?page=' + pageNum
               a(href=pageUrl)= pageNum
         if endPage < totalPages
           if endPage < totalPages - 1
             li ...
           li
-            - var lastUrl = search ? '?page=' + totalPages + '&search=' + search : '?page=' + totalPages
+            - var lastUrl = '?page=' + totalPages
             a(href=lastUrl)= totalPages
         if hasNext
           li
             - var nextPage = currentPage + 1
-            - var nextUrl = search ? '?page=' + nextPage + '&search=' + search : '?page=' + nextPage
+            - var nextUrl = '?page=' + nextPage
             a(href=nextUrl) Next
         else
           li Next
-

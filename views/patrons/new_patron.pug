@@ -1,4 +1,4 @@
-extends layout
+extends ../layout
 
 block content
   h1 New Patron
@@ -22,10 +22,9 @@ block content
       input#email(type='text', name='email', value=(patron ? patron.email : ''))
     p
       label(for='library_id') Library ID
-      input#library_id(type='text', name='library_id', value=(patron ? patron.library_id : ''))
+      input#library_id(type='text', name='library_id', value=(patron ? patron.library_id : ''), readonly)
     p
       label(for='zip_code') Zip Code
-      input#zip_code(type='text', name='zip_code', value=(patron ? patron.zip_code : ''))
+      input#zip_code(type='text', name='zip_code', value=(patron ? patron.zip_code : '') )
     p
       input(type='submit', value='Create New Patron')
-

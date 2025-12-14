@@ -30,11 +30,27 @@ module.exports = (sequelize, DataTypes) => {
     },
     book_id: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Book ID is required'
+          },
+          notEmpty: {
+            msg: 'Please select a book to loan'
+          }
+        }
     },
     patron_id: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Patron ID is required'
+        },
+        notEmpty: {
+          msg: 'Please select a patron for the loan'
+        }
+      }
     },
     loaned_on: {
       type: DataTypes.DATEONLY,

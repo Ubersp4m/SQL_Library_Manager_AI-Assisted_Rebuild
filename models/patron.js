@@ -44,11 +44,6 @@ module.exports = (sequelize, DataTypes) => {
     address: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate: {
-        notEmpty: {
-          msg: 'Address is required'
-        }
-      }
     },
     email: {
       type: DataTypes.STRING,
@@ -76,9 +71,6 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         isNumeric: {
           msg: 'Zip Code must be a number'
-        },
-        notEmpty: {
-          msg: 'Zip Code is required'
         }
       }
     }

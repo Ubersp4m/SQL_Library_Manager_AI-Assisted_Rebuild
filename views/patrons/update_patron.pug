@@ -1,0 +1,103 @@
+extends ../layout
+
+block content
+  h1 Patron: #{patron.first_name} #{patron.last_name}
+  form(method='POST', action='/patrons/' + patron.id+'?_method=PUT')
+    if errors
+      h2.error Oooops!
+      ul.error
+        each error in errors
+          li= error
+    p
+      label(for='first_name') First Name
+      input#first_name(type='text', name='first_name', value=patron.first_name)
+    p
+      label(for='last_name') Last Name
+      input#last_name(type='text', name='last_name', value=patron.last_name)
+    p
+      label(for='address') Address
+      input#address(type='text', name='address', value=patron.address || '')
+    p
+      label(for='email') Email
+      input#email(type='text', name='email', value=patron.email)
+    p
+      label(for='library_id') Library ID
+      input#library_id(type='text', name='library_id', value=patron.library_id)
+    p
+      label(for='zip_code') Zip Code
+      input#zip_code(type='text', name='zip_code', value=patron.zip_code || '')
+    p
+      input(type='submit', value='Update')
+  //- Loan History table (use embedded patron.Loans when available)
+  h2 Loan History
+  - var loansArray = (patron && patron.Loans) ? patron.Loans : (typeof loans !== 'undefined' ? loans : []);
+  if loansArray && loansArray.length > 0
+    table
+      thead
+        tr
+          th Book
+          th Patron
+          th Loaned on  
+          th Return by
+          th Returned on
+          th Action
+      tbody
+        each loan in loansArray
+          tr
+            td
+              if loan.Book
+                a(href='/books/' + loan.Book.id)= loan.Book.title
+              else
+                | (book removed)
+            td= patron.first_name + ' ' + patron.last_name
+            td= loan.loaned_on
+            td= loan.return_by
+            td= loan.returned_on || ''
+            td
+              if !loan.returned_on
+                a.button(href='/loans/' + loan.id + '/return') Return Book
+              else
+                | 
+    if typeof totalPages !== 'undefined' && totalPages > 1
+      nav.pagination
+        ul
+          if hasPrevious
+            li
+              - var prevPage = currentPage - 1
+              - var prevUrl = '?page=' + prevPage
+              a(href=prevUrl) Previous
+          else
+            li Previous
+          - var startPage = Math.max(1, currentPage - 2)
+          - var endPage = Math.min(totalPages, currentPage + 2)
+          - var pages = []
+          - for (var i = startPage; i <= endPage; i++) { pages.push(i); }
+          if startPage > 1
+            li
+              a(href='?page=1') 1
+            if startPage > 2
+              li ...
+          each pageNum in pages
+            if pageNum === currentPage
+              li.active
+                - var currentUrl = '?page=' + pageNum
+                a(href=currentUrl)= pageNum
+            else
+              li
+                - var pageUrl = '?page=' + pageNum
+                a(href=pageUrl)= pageNum
+          if endPage < totalPages
+            if endPage < totalPages - 1
+              li ...
+            li
+              - var lastUrl = '?page=' + totalPages
+              a(href=lastUrl)= totalPages
+          if hasNext
+            li
+              - var nextPage = currentPage + 1
+              - var nextUrl = '?page=' + nextPage
+              a(href=nextUrl) Next
+          else
+            li Next
+  else
+    p No loan history found

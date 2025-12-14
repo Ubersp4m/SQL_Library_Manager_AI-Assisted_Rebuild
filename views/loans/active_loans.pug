@@ -1,7 +1,7 @@
-extends layout
+extends ../layout
 
 block content
-  h1 Overdue Loans
+  h1 Active Loans
   p
     a.button(href='/loans/new') Create New Loan
   p.filters
@@ -10,7 +10,7 @@ block content
     |  
     a(href='/loans/overdue') Overdue
     |  
-    a(href='/loans/active') Active
+    a(href='/loans/active') Current
   table
     thead
       tr
@@ -35,7 +35,7 @@ block content
               a.button(href='/loans/' + loan.id + '/return') Return Book
       else
         tr
-          td(colspan='6', style='text-align: center; padding: 20px;') No overdue loans found
+          td(colspan='6', style='text-align: center; padding: 20px;') No active loans found
   if totalPages > 1
     nav.pagination
       ul
@@ -77,4 +77,3 @@ block content
             a(href=nextUrl) Next
         else
           li Next
-
