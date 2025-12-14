@@ -1,0 +1,76 @@
+extends layout
+
+block content
+  h1 Patrons
+  div.create-search-container
+    a.button(href='/patrons/new') Create New Patron
+    form(method='get')
+      if search
+        input(type='search', id='search', name='search', placeholder='Search...', value=search)
+      else
+        input(type='search', id='search', name='search', placeholder='Search...')
+      button.search-btn(type='submit') Search
+  table
+    thead
+      tr
+        th Name
+        th Address
+        th Email
+        th Library ID
+        th Zip
+    tbody
+      if patrons.length > 0
+        each patron in patrons
+          tr
+            td
+              a(href='/patrons/' + patron.id)= patron.first_name + ' ' + patron.last_name
+            td= patron.address || ''
+            td= patron.email || ''
+            td= patron.library_id || ''
+            td= patron.zip_code || ''
+      else
+        tr
+          td(colspan='5', style='text-align: center; padding: 20px;') No results found
+  if totalPages > 1
+    nav.pagination
+      ul
+        if hasPrevious
+          li
+            - var prevPage = currentPage - 1
+            - var prevUrl = search ? '?page=' + prevPage + '&search=' + search : '?page=' + prevPage
+            a(href=prevUrl) Previous
+        else
+          li Previous
+        - var startPage = Math.max(1, currentPage - 2)
+        - var endPage = Math.min(totalPages, currentPage + 2)
+        - var pages = []
+        - for (var i = startPage; i <= endPage; i++) { pages.push(i); }
+        if startPage > 1
+          li
+            - var firstUrl = search ? '?page=1&search=' + search : '?page=1'
+            a(href=firstUrl) 1
+          if startPage > 2
+            li ...
+        each pageNum in pages
+          if pageNum === currentPage
+            li.active
+              - var currentUrl = search ? '?page=' + pageNum + '&search=' + search : '?page=' + pageNum
+              a(href=currentUrl)= pageNum
+          else
+            li
+              - var pageUrl = search ? '?page=' + pageNum + '&search=' + search : '?page=' + pageNum
+              a(href=pageUrl)= pageNum
+        if endPage < totalPages
+          if endPage < totalPages - 1
+            li ...
+          li
+            - var lastUrl = search ? '?page=' + totalPages + '&search=' + search : '?page=' + totalPages
+            a(href=lastUrl)= totalPages
+        if hasNext
+          li
+            - var nextPage = currentPage + 1
+            - var nextUrl = search ? '?page=' + nextPage + '&search=' + search : '?page=' + nextPage
+            a(href=nextUrl) Next
+        else
+          li Next
+

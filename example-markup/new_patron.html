@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Library Manager</title>
+    <link rel="stylesheet" href="../public/stylesheets/style.css" />
+  </head>
+  <nav>
+    <ul>
+      <li><a href="all_books.html">Books</a></li>
+      <li><a href="all_patrons.html">Patrons</a></li>
+      <!-- ADD FOR EXCEEDS -->
+      <!-- <li><a href="all_loans.html">Loans</a></li> -->
+    </ul>
+  </nav>
+
+  <body>
+    <h1>New Patron</h1>
+    <form>
+      <h2 class="error">Oooops!</h2>
+      <ul class="error">
+        <li>First Name is required</li>
+      </ul>
+      <p>
+        <label for="first_name">First Name</label>
+        <input id="first_name" type="text" />
+      </p>
+      <p>
+        <label for="last_name">Last Name</label>
+        <input id="last_name" type="text" />
+      </p>
+      <p>
+        <label for="address"> Address</label>
+        <input id="address" type="text" />
+      </p>
+      <p>
+        <label for="email">Email</label>
+        <input id="email" type="text" />
+      </p>
+      <p>
+        <label for="zip_code">Zip Code</label>
+        <input id="zip_code" type="text" />
+      </p>
+      <p>
+        <input type="submit" value="Create New Patron" />
+      </p>
+    </form>
+  </body>
+</html>

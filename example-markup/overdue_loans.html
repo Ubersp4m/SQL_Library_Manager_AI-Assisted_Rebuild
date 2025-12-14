@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Library Manager</title>
+    <link rel="stylesheet" href="../public/stylesheets/style.css" />
+  </head>
+  <nav>
+    <ul>
+      <li><a href="all_books.html">Books</a></li>
+      <li><a href="all_patrons.html">Patrons</a></li>
+      <li><a href="all_loans.html">Loans</a></li>
+    </ul>
+  </nav>
+
+  <body>
+    <h1>Overdue Loans</h1>
+    <p><a href="new_loan.html" class="button">Create New Loan</a></p>
+    <p class="filters">
+      <strong>Filters: </strong>
+      <a href="all_loans.html">All</a> |
+      <a href="overdue_loans.html">Overdue</a> |
+      <a href="active_loans.html">Active</a>
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Book</th>
+          <th>Patron</th>
+          <th>Loaned on</th>
+          <th>Return by</th>
+          <th>Returned on</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <a href="book_detail.html">Harry Potter and the Goblet of Fire</a>
+          </td>
+          <td><a href="patron_detail.html">Mike The Frog</a></td>
+          <td>2025-12-11</td>
+          <td>2025-12-18</td>
+          <td></td>
+          <td><a href="return_book.html" class="button">Return Book</a></td>
+        </tr>
+        <tr>
+          <td><a href="book_detail.html">A Brief History of Time</a></td>
+          <td><a href="patron_detail.html">Jamal Green</a></td>
+          <td>2025-12-12</td>
+          <td>2025-12-19</td>
+          <td></td>
+          <td><a href="return_book.html" class="button">Return Book</a></td>
+        </tr>
+        <tr>
+          <td><a href="book_detail.html">The Universe in a Nutshell</a></td>
+          <td><a href="patron_detail.html">David Chen</a></td>
+          <td>2025-12-13</td>
+          <td>2025-12-20</td>
+          <td></td>
+          <td><a href="return_book.html" class="button">Return Book</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

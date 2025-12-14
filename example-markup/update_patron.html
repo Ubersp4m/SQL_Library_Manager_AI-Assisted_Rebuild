@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Library Manager</title>
+    <link rel="stylesheet" href="../public/stylesheets/style.css" />
+  </head>
+  <nav>
+    <ul>
+      <li><a href="all_books.html">Books</a></li>
+      <li><a href="all_patrons.html">Patrons</a></li>
+      <!-- ADD FOR EXCEEDS -->
+      <!-- <li><a href="all_loans.html">Loans</a></li> -->
+    </ul>
+  </nav>
+
+  <body>
+    <h1>Patron: Mike The Frog</h1>
+    <form>
+      <h2 class="error">Oooops!</h2>
+      <ul class="error">
+        <li>First Name is required</li>
+      </ul>
+      <p>
+        <label for="first_name">First Name</label>
+        <input id="first_name" type="text" value="Mike" />
+      </p>
+      <p>
+        <label for="last_name">Last Name</label>
+        <input id="last_name" type="text" value="The Frog" />
+      </p>
+      <p>
+        <label for="address"> Address</label>
+        <input id="address" type="text" value="11 Lily Pad Ln." />
+      </p>
+      <p>
+        <label for="email">Email</label>
+        <input id="email" type="text" value="frogman@example.com" />
+      </p>
+      <p>
+        <label for="zip_code">Zip Code</label>
+        <input id="zip_code" type="text" value="90210" />
+      </p>
+      <p><input type="submit" value="Update" /></p>
+    </form>
+    <!-- ADD FOR EXCEEDS -->
+    <!--
+    <h2>Loan History</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Book</th>
+          <th>Patron</th>
+          <th>Loaned on</th>
+          <th>Return by</th>
+          <th>Returned on</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <a href="book_detail.html">Harry Potter and the Goblet of Fire</a>
+          </td>
+          <td>Mike The Frog</td>
+          <td>2025-09-01</td>
+          <td>2025-09-08</td>
+          <td>2025-09-06</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="book_detail.html">A Brief History of Time</a></td>
+          <td>Mike The Frog</td>
+          <td>2025-09-01</td>
+          <td>2025-09-08</td>
+          <td></td>
+          <td><a href="return_book.html" class="button">Return Book</a></td>
+        </tr>
+      </tbody>
+    </table> -->
+  </body>
+</html>

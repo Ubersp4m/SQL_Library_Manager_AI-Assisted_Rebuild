@@ -1,0 +1,162 @@
+:root {
+  --primary-color: #015998;
+  --primary-color-hover: #026eba;
+  --secondary-color: #cc9446;
+  --secondary-color-hover: #e3a64f;
+  --background-color-light: #e7e7e7;
+  --color-error: #d41010;
+
+  --border: 2px solid;
+}
+
+body {
+  max-width: 1080px;
+  padding: 50px;
+  font: 18px "Garamond", serif;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  color: black;
+}
+
+a.button,
+input[type="submit"],
+.search-btn {
+  color: white;
+  background: var(--primary-color);
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+form a.button,
+input[type="submit"] {
+  margin-left: 140px;
+}
+
+input[type="submit"] {
+  border: 0;
+}
+
+a.button:hover,
+input[type="submit"]:hover {
+  background-color: var(--primary-color-hover);
+}
+
+p {
+  margin: 20px auto;
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+  margin-bottom: 10px;
+  line-height: 1.3em;
+}
+
+nav {
+  border-bottom: var(--border) var(--secondary-color);
+}
+
+nav ul li {
+  display: inline-block;
+  list-style: none;
+  padding-left: 7px;
+}
+
+nav ul li:after,
+.filters a:after {
+  content: " | ";
+}
+
+nav ul li:last-child:after,
+.filters a:last-child:after {
+  content: none;
+}
+
+h2 {
+  border-top: var(--border) var(--background-color-light);
+  padding-top: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  border-bottom: var(--border) var(--secondary-color);
+  text-align: left;
+  padding: 5px 20px 5px 10px;
+}
+
+tr {
+  min-height: 50px;
+}
+
+tr .button {
+  display: inline-block;
+  text-align: center;
+  background-color: var(--secondary-color);
+  padding: 4px 8px 5px;
+  font-weight: normal;
+}
+
+tr .button:hover {
+  background-color: var(--secondary-color-hover);
+}
+
+tr:nth-child(2n) {
+  background: var(--background-color-light);
+}
+
+td {
+  padding: 5px 20px 5px 10px;
+}
+
+label {
+  font-weight: bold;
+  min-width: 130px;
+  display: inline-block;
+}
+
+input,
+select {
+  padding: 10px;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  border-radius: 2px;
+  border-color: var(--background-color-light);
+}
+
+input[type="text"],
+select {
+  margin-left: 10px;
+}
+
+select {
+  width: 300px;
+}
+
+.create-search-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+li.active a {
+  text-decoration: underline;
+  color: #cc9446;
+}
+
+h2.error,
+ul.error li {
+  color: var(--color-error);
+}

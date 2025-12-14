@@ -1,0 +1,80 @@
+extends layout
+
+block content
+  h1 Overdue Loans
+  p
+    a.button(href='/loans/new') Create New Loan
+  p.filters
+    strong Filters: 
+    a(href='/loans') All
+    |  
+    a(href='/loans/overdue') Overdue
+    |  
+    a(href='/loans/active') Active
+  table
+    thead
+      tr
+        th Book
+        th Patron
+        th Loaned on
+        th Return by
+        th Returned on
+        th Action
+    tbody
+      if loans.length > 0
+        each loan in loans
+          tr
+            td
+              a(href='/books/' + loan.Book.id)= loan.Book.title
+            td
+              a(href='/patrons/' + loan.Patron.id)= loan.Patron.first_name + ' ' + loan.Patron.last_name
+            td= loan.loaned_on
+            td= loan.return_by
+            td= loan.returned_on || ''
+            td
+              a.button(href='/loans/' + loan.id + '/return') Return Book
+      else
+        tr
+          td(colspan='6', style='text-align: center; padding: 20px;') No overdue loans found
+  if totalPages > 1
+    nav.pagination
+      ul
+        if hasPrevious
+          li
+            - var prevPage = currentPage - 1
+            - var prevUrl = '?page=' + prevPage
+            a(href=prevUrl) Previous
+        else
+          li Previous
+        - var startPage = Math.max(1, currentPage - 2)
+        - var endPage = Math.min(totalPages, currentPage + 2)
+        - var pages = []
+        - for (var i = startPage; i <= endPage; i++) { pages.push(i); }
+        if startPage > 1
+          li
+            a(href='?page=1') 1
+          if startPage > 2
+            li ...
+        each pageNum in pages
+          if pageNum === currentPage
+            li.active
+              - var currentUrl = '?page=' + pageNum
+              a(href=currentUrl)= pageNum
+          else
+            li
+              - var pageUrl = '?page=' + pageNum
+              a(href=pageUrl)= pageNum
+        if endPage < totalPages
+          if endPage < totalPages - 1
+            li ...
+          li
+            - var lastUrl = '?page=' + totalPages
+            a(href=lastUrl)= totalPages
+        if hasNext
+          li
+            - var nextPage = currentPage + 1
+            - var nextUrl = '?page=' + nextPage
+            a(href=nextUrl) Next
+        else
+          li Next
+
