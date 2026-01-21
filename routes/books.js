@@ -16,7 +16,8 @@ router.get('/', function(req, res, next) {
       [Op.or]: [
         { title: { [Op.like]: '%' + search + '%' } },
         { author: { [Op.like]: '%' + search + '%' } },
-        { genre: { [Op.like]: '%' + search + '%' } }
+        { genre: { [Op.like]: '%' + search + '%' } },
+        { first_published: { [Op.like]: '%' + search + '%' } }
       ]
     };
   }

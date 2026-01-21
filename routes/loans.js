@@ -21,8 +21,11 @@ router.get('/', function(req, res, next) {
       [Op.or]: [
         { '$Book.title$': { [Op.like]: '%' + search + '%' } },
         { '$Book.author$': { [Op.like]: '%' + search + '%' } },
+        { '$Book.first_published$': { [Op.like]: '%' + search + '%' } },
         { '$Patron.first_name$': { [Op.like]: '%' + search + '%' } },
-        { '$Patron.last_name$': { [Op.like]: '%' + search + '%' } }
+        { '$Patron.last_name$': { [Op.like]: '%' + search + '%' } },
+        { '$Patron.address$': { [Op.like]: '%' + search + '%' } },
+        { '$Patron.zip_code$': { [Op.like]: '%' + search + '%' } }
       ]
     };
   }
@@ -124,7 +127,7 @@ router.post('/new', function(req, res, next) {
               .then(function(books) {
                 return db.Patron.findAll({ order: [['library_id', 'ASC']] })
                   .then(function(patrons) {
-                    res.status(400).render('new_loan', { books: books, patrons: patrons, errors: errors, book_id: bookId, patron_id: patronId });
+                    res.status(400).render('loans/new_loan', { books: books, patrons: patrons, errors: errors, book_id: bookId, patron_id: patronId });
                   });
               });
           });
@@ -163,7 +166,7 @@ router.post('/:id/return', function(req, res, next) {
           .then(function(loan) {
             if (!loan) { var err = new Error('Loan not found'); err.status = 404; return next(err); }
             var errors = ['This loan has already been returned'];
-            res.status(409).render('return_book', { loan: loan, returnedOn: returnedOn, errors: errors });
+            res.status(409).render('loans/return_book', { loan: loan, returnedOn: returnedOn, errors: errors });
           });
       }
       res.redirect('/loans');

@@ -17,7 +17,9 @@ router.get('/', function(req, res, next) {
         { first_name: { [Op.like]: '%' + search + '%' } },
         { last_name: { [Op.like]: '%' + search + '%' } },
         { email: { [Op.like]: '%' + search + '%' } },
-        { library_id: { [Op.like]: '%' + search + '%' } }
+        { library_id: { [Op.like]: '%' + search + '%' } },
+        { address: { [Op.like]: '%' + search + '%' } },
+        { zip_code: { [Op.like]: '%' + search + '%' } }
       ]
     };
   }
